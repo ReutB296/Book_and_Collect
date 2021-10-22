@@ -1,12 +1,30 @@
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+} from "react-router-dom";
 import Home from './home/home';
+import Search from "./search/Search";
+
 
 function App() {
   return (
-    <div className="App">
-        <Home/>
+ <>
+      <Router>
+        <Switch>
+
+          <Route path="/" exact>
+              <Home/>
+          </Route>
+
+          <Route path="/search">
+            <Search/>
+          </Route>
+
+        </Switch>
+      </Router>
       
-    </div>
+  </>
   );
 }
 
