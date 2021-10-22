@@ -1,0 +1,26 @@
+.home_container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.homeBox{
+    max-width: 700px;
+    max-height: 400px;
+    width: 100%;
+    height: 100%;
+    background-color: aliceblue;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;;
+    margin: auto;
+    display: flex;
+    
+}
+
+.react-typewriter-text-wrap{
+    font-family: Freestyle Script;
+    margin: auto;
+    font-size: 60px;
+    letter-spacing: 6px; 
+    font-weight: bold;
+}
+
