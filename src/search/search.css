@@ -1,0 +1,57 @@
+.results_container{
+    background-image: url('../img/pexels-janko-ferlic-590493.jpg');
+    background-size: contain;
+    background: #fcfcfc;
+    border-top: 1px solid #eee;
+    height: 85vh;
+}
+
+.input_container{
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.inputSearch{
+    /* padding: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc; */
+    outline: none;
+    margin-top: 3%;
+    max-width: 30%;
+    width: 100%;
+
+    background-color: transparent;
+    border: medium none;
+    border-width: 0 0 2px 0;
+    border-style: solid;
+    border-color: #dadbdb;
+    border-radius: 0;
+    padding: 3px 0;
+    font-size: 100%;
+    
+    
+
+}
+
+.headerContainer{
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.search_h1{
+    position: absolute;
+    left: 45%;
+    top: 20%;
+    font-family: Freestyle Script;
+    font-size: 2rem;
+}
+
+.searchBtn{
+    border: none;
+    background-color: transparent;
+    width: fit-content;
+    height: fit-content;
+    padding: 0;
+    
+}
