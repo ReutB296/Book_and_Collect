@@ -1,15 +1,26 @@
 import './search.css';
 import {useState, useRef, useEffect, useCallback} from 'react';
 import debounce from 'lodash.debounce';
+import logo from '../img/Book\ and\ Collect-logos_transparent.png';
+import ReactPaginate from 'react-paginate';
+
 
 export default function Search(){
+
     const [value, setValue] = useState('');
     const [serachResults, setSerachResults] = useState([]);
+    const [pageNumber, setPageNumber] = useState(1);
+    const [pageCount, setPageCount] = useState(0);
     const inputRef = useRef("");
 
+    const onSearch = () =>{
+        setValue(inputRef.current.value);
+    }
+
+
     const search = useCallback(debounce(() => {
-        console.log("value from search",value)
-        fetch('/api/Books/search', {
+      
+        fetch(`/api/Books/search?page=${pageNumber}`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'
@@ -17,21 +28,19 @@ export default function Search(){
             body: JSON.stringify({value})
         })
             .then(response => response.json())
-            .then(data => {setSerachResults(data);
-                           console.log(serachResults);
+            .then(data => {
+                setSerachResults(data.docs);
+                setPageCount(data.totalPages);
+
                            
             }).catch(err => {
                 console.log(err);
             });
-    }, 700), [value]);
+    }, 700), [value, pageNumber]);
 
-    const onSearch = () =>{
-        setValue(inputRef.current.value);
-    }
-
+  
     useEffect(() =>{
         if (value !== ''){
-            console.log("value useeffect", value)
             search();
             return search.cancel;
         }else{
@@ -40,12 +49,17 @@ export default function Search(){
 
     }, [value, search]);
 
+
+    const changePage = ({ selected }) =>{
+        setPageNumber(selected + 1);
+    };
+
      
   
     return(
         <div className="search_container">
             <div className="headerContainer">
-                {/* <h1 className="search_h1">Search a book</h1> */}
+                <img src={logo}/>
                 <div className="input_container">
                     <input className="inputSearch" placeholder="Search a book..." ref={inputRef} value={value} onChange={onSearch}/>
                     <button className="searchBtn">
@@ -55,19 +69,32 @@ export default function Search(){
             </div>
             <div className="results_container">
                 { serachResults.length !== 0 ?
-                        <ul>
+                <>
+                        <ul className="booksList">
                             { serachResults.map (book =>
-                            <li>
+                            <li className="listItem">
                                 <div className="bookCover"><img src={`https://covers.openlibrary.org/b/isbn/${book.isbn[0]}-M.jpg`}/></div>
                                 <div className="searchcontainer">
-                                        <div className="titleSearch">{book.title}</div>
-                                        <div className="first_publish_year">{book.first_publish_year}</div>
-                                        {book.language.map(language => <span>{language}</span>)}
+                                        <div className="titleSearch"><span>Title:</span> {book.title}</div>
+                                        <div className="first_publish_year"><span>First publish year:</span> {book.first_publish_year}</div>
+                                        {/* {book.language.map(language => <div>{language}</div>)} */}
                                 </div>
                             </li>
 
                             )}
                         </ul>
+                        <ReactPaginate
+                        previousLabel={"Previous"}
+                        nextLabel={"Next"}
+                        pageCount={pageCount}
+                        onPageChange={changePage}
+                        containerClassName={"paginationBttns"}
+                        previousLinkClassName={"previousBttn"}
+                        nextLinkClassName={"nextBttn"}
+                        disabledClassName={"paginationDisabled"}
+                        activeClassName={"paginationActive"}
+                     />
+                </>
                 :
                 ""
                 }

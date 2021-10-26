@@ -1,14 +1,11 @@
 .results_container{
-    background-image: url('../img/pexels-janko-ferlic-590493.jpg');
-    background-size: contain;
     background: #fcfcfc;
     border-top: 1px solid #eee;
-    height: 85vh;
+   
 }
 
 .input_container{
     display: flex;
-    justify-content: center;
     align-items: baseline;
 }
 
@@ -17,9 +14,7 @@
     border-radius: 4px;
     border: 1px solid #ccc; */
     outline: none;
-    margin-top: 3%;
-    max-width: 30%;
-    width: 100%;
+    width: 400px;
 
     background-color: transparent;
     border: medium none;
@@ -30,22 +25,22 @@
     padding: 3px 0;
     font-size: 100%;
     
-    
 
 }
 
 .headerContainer{
-    position: relative;
-    margin-bottom: 25px;
+   position: relative;
+   padding-bottom: 25px;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   gap: 30px;
 }
 
-.search_h1{
-    position: absolute;
-    left: 45%;
-    top: 20%;
-    font-family: Freestyle Script;
-    font-size: 2rem;
+.headerContainer img{
+    width: 10%;
 }
+
 
 .searchBtn{
     border: none;
@@ -55,3 +50,30 @@
     padding: 0;
     
 }
+
+.results_container .booksList{
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.results_container .booksList .listItem{
+    display: flex;
+    padding: 24px;
+    text-decoration: none;
+    border: 2px solid #f0f0f0;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 0 1px 0 rgb(0 0 0 / 10%);
+    overflow-wrap: break-word;
+    overflow: hidden;
+    width: 520px;
+}
+
+.paginationBttns{
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
