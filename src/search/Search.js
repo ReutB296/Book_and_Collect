@@ -74,13 +74,15 @@ export default function Search(){
                             { serachResults.map (book =>
                             <li className="listItem">
                                 <div className="bookCover"><img src={`https://covers.openlibrary.org/b/isbn/${book.isbn[0]}-M.jpg`}/></div>
-                                <div className="searchcontainer">
-                                        <div className="titleSearch"><span>Title:</span> {book.title}</div>
-                                        <div className="first_publish_year"><span>First publish year:</span> {book.first_publish_year}</div>
-                                        {/* {book.language.map(language => <div>{language}</div>)} */}
+                                <div className="text_container">
+                                    <div className="titleSearch">{book.title}</div>
+                                    <div className="author_name">{book.author_name[0]}</div>
                                 </div>
+                                <button className="addToCart">
+                                         <img class="mr-2" src="https://rails-assets-us.bookshop.org/assets/ic_cart_light-b26a46b06b6ae40a9499157d18cb2eba8f8d81b0de5637f93ef851ea54ceae4c.svg"/>
+                                ADD TO CART
+                                </button>     
                             </li>
-
                             )}
                         </ul>
                         <ReactPaginate
